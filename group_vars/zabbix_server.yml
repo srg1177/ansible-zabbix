@@ -1,7 +1,7 @@
 ---
 
-#ansible_host  : 0.0.0.0
-#asnsible_user : ubuntu
+ansible_host  : 18.191.170.33
+ansible_user  : ubuntu
 
 ...
 

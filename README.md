@@ -1,2 +1,2 @@
 # ansible-zabbix
-This is related to ansible practice axamples 
+Just a humble Ansible reop...

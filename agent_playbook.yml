@@ -1,0 +1,33 @@
+---
+
+ - hosts : zabbix_agent
+   tasks:
+     - name : Getting zabbix repository
+       uri:
+         url : https://repo.zabbix.com/zabbix/{{ zabbix_version }}/ubuntu/pool/main/z/zabbix-release/zabbix-release_{{ zabbix_version }}-1+bionic_all.deb
+         dest : /opt/zabbix-release_{{ zabbix_version }}-1+bionic_all.deb
+         force : false
+       become : true
+
+     - name: Installing zabbix repository
+       apt : 
+         deb : /opt/zabbix-release_{{ zabbix_version }}-1+bionic_all.deb 
+         state : present 
+       become : true
+
+     - name : Installing zabbix agent
+       apt:
+         name : zabbix-agent
+         update_cache : true
+         state : present
+       become :  true
+       notify : Starting zabbix agent
+
+   handlers :
+     - name : Starting zabbix agent
+       service :
+         name : zabbix-agent
+         state : started 
+       become : true 
+
+... 
