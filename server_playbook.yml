@@ -17,13 +17,15 @@
 
      - name : Installing zabbix server, proxy-mysql and web-interface
        apt:
-         name : 
-           - zabbix-server-mysql
-           - zabbix-proxy-mysql
-           - zabbix-frontend-php
+         name : '{{ item }}'
          state : present
-       become :  true
+       become : true
        notify : Starting zabbix server
+       loop:
+         - zabbix-server-mysql
+         - zabbix-proxy-mysql
+         - zabbix-frontend-php
+
 
    handlers :
      - name : Starting zabbix server
